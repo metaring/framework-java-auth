@@ -11,9 +11,9 @@ import com.metaring.framework.type.DataRepresentation;
 
 public class AuthFunctionalitiesManager extends FunctionalitiesManager implements GeneratedFunctionalitiesManager {
 
-    public static final FunctionalityInfo VERIFY_ENABLE = FunctionalityInfo.create("com.metaring.framework.auth.verifyEnable", true, true, false, "com.metaring.framework.auth.PreliminaryEnableData", "java.lang.Boolean");
+    public static final FunctionalityInfo VERIFY_ENABLE = VerifyEnableFunctionality.INFO;
 
-    public static final FunctionalityInfo VERIFY_IDENTIFICATION = FunctionalityInfo.create("com.metaring.framework.auth.verifyIdentification", true, false, false, "com.metaring.framework.type.DataRepresentation", "java.lang.Boolean");
+    public static final FunctionalityInfo VERIFY_IDENTIFICATION = VerifyIdentificationFunctionality.INFO;
 
     public static final CompletableFuture<Boolean> verifyEnable(PreliminaryEnableData preliminaryEnableData) {
         return call(VERIFY_ENABLE, VerifyEnableFunctionality.class, getCallingFunctionality(), preliminaryEnableData, result -> result.asTruth());

@@ -79,6 +79,42 @@ public class PreliminaryEnableData implements GeneratedCoreType {
         return preliminaryEnableData;
     }
 
+    public static PreliminaryEnableData fromObject(Object object) {
+
+        if(object == null) {
+            return null;
+        }
+
+        DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.fromObject(object);
+
+        DataRepresentation data = null;
+        if(dataRepresentation.hasProperty("data")) {
+            try {
+                data = dataRepresentation.get("data");
+            } catch (Exception e) {
+            }
+        }
+
+        String functionalityName = null;
+        if(dataRepresentation.hasProperty("functionalityName")) {
+            try {
+                functionalityName = dataRepresentation.getText("functionalityName");
+            } catch (Exception e) {
+            }
+        }
+
+        DataRepresentation functionalityParam = null;
+        if(dataRepresentation.hasProperty("functionalityParam")) {
+            try {
+                functionalityParam = dataRepresentation.get("functionalityParam");
+            } catch (Exception e) {
+            }
+        }
+
+        PreliminaryEnableData preliminaryEnableData = create(data, functionalityName, functionalityParam);
+        return preliminaryEnableData;
+    }
+
     public DataRepresentation toDataRepresentation() {
         DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.create();
         if (data != null) {

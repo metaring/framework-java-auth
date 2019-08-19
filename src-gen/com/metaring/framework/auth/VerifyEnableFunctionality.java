@@ -1,15 +1,19 @@
 package com.metaring.framework.auth;
 
-import com.metaring.framework.SysKB;
 import java.util.concurrent.CompletableFuture;
 import com.metaring.framework.functionality.AbstractFunctionality;
 import com.metaring.framework.functionality.GeneratedFunctionality;
+import com.metaring.framework.functionality.FunctionalityInfo;
 import com.metaring.framework.auth.PreliminaryEnableData;
 
-public abstract class VerifyEnableFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
+abstract class VerifyEnableFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
 
-    protected VerifyEnableFunctionality(SysKB sysKB) {
-        super(sysKB, AuthFunctionalitiesManager.VERIFY_ENABLE, Boolean.class);
+    static final FunctionalityInfo INFO = FunctionalityInfo.create("com.metaring.framework.auth.verifyEnable", true, true, false, "com.metaring.framework.auth.PreliminaryEnableData", "java.lang.Boolean");
+
+    static final VerifyEnableFunctionality INSTANCE = new VerifyEnableFunctionalityImpl();
+
+    protected VerifyEnableFunctionality() {
+        super(INFO, Boolean.class);
     }
 
     @Override
@@ -110,9 +114,5 @@ public abstract class VerifyEnableFunctionality extends AbstractFunctionality im
     @Override
     protected final Object getInputFromJsonWork(String inputJson) {
         return PreliminaryEnableData.fromJson(inputJson);
-    }
-
-    protected static final VerifyEnableFunctionality create(SysKB sysKB) {
-        return new VerifyEnableFunctionalityImpl(sysKB);
     }
 }

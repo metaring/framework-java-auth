@@ -1,16 +1,20 @@
 package com.metaring.framework.auth;
 
-import com.metaring.framework.SysKB;
 import java.util.concurrent.CompletableFuture;
 import com.metaring.framework.Tools;
 import com.metaring.framework.functionality.AbstractFunctionality;
 import com.metaring.framework.functionality.GeneratedFunctionality;
+import com.metaring.framework.functionality.FunctionalityInfo;
 import com.metaring.framework.type.DataRepresentation;
 
-public abstract class VerifyIdentificationFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
+abstract class VerifyIdentificationFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
 
-    protected VerifyIdentificationFunctionality(SysKB sysKB) {
-        super(sysKB, AuthFunctionalitiesManager.VERIFY_IDENTIFICATION, Boolean.class);
+    static final FunctionalityInfo INFO = FunctionalityInfo.create("com.metaring.framework.auth.verifyIdentification", true, false, false, "com.metaring.framework.type.DataRepresentation", "java.lang.Boolean");
+
+    static final VerifyIdentificationFunctionality INSTANCE = new VerifyIdentificationFunctionalityImpl();
+
+    protected VerifyIdentificationFunctionality() {
+        super(INFO, Boolean.class);
     }
 
     @Override
@@ -111,9 +115,5 @@ public abstract class VerifyIdentificationFunctionality extends AbstractFunction
     @Override
     protected final Object getInputFromJsonWork(String inputJson) {
         return Tools.FACTORY_DATA_REPRESENTATION.fromJson(inputJson);
-    }
-
-    protected static final VerifyIdentificationFunctionality create(SysKB sysKB) {
-        return new VerifyIdentificationFunctionalityImpl(sysKB);
     }
 }
